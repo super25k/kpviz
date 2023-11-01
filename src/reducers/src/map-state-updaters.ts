@@ -90,12 +90,19 @@ const mapStateUpdaters = null;
  * @property splitMapViewports: `[]`
  * @public
  */
+
+let appVariables;
+
+export function setup(vars) {
+  appVariables = vars;
+};
+
 export const INITIAL_MAP_STATE: MapState = {
   pitch: 0,
   bearing: 0,
-  latitude: 37.75043,
-  longitude: -122.34679,
-  zoom: 9,
+  latitude: appVariables.initialLatitude,
+  longitude: appVariables.initialLongitude,
+  zoom: appVariables.initialZoom,
   dragRotate: false,
   width: 800,
   height: 800,
