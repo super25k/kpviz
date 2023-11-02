@@ -91,9 +91,9 @@ const mapStateUpdaters = null;
  * @public
  */
 
-let appVariables;
+let appVariables: { initialLatitude: any; initialLongitude: any; initialZoom: any; };
 
-export function setup(vars) {
+export function setup(vars: any) {
   appVariables = vars;
 };
 
@@ -136,7 +136,7 @@ export const updateMapUpdater = (
   }
 
   let otherViewportMapIndex = -1;
-  const splitMapViewports = state.splitMapViewports.map((currentViewport, i) => {
+  const splitMapViewports = state.splitMapViewports.map((currentViewport: any, i: number) => {
     if (i === mapIndex) {
       // update the matching viewport with the newViewport info in the action payload
       return updateViewport(currentViewport, viewport);
@@ -207,7 +207,7 @@ export const fitBoundsUpdater = (
   // if fitting to bounds while split and unsynced
   // copy the new latitude, longitude, and zoom values to each split viewport
   if (newState.splitMapViewports.length) {
-    newState.splitMapViewports = newState.splitMapViewports.map(currentViewport => ({
+    newState.splitMapViewports = newState.splitMapViewports.map((currentViewport: any) => ({
       ...currentViewport,
       latitude: newState.latitude,
       longitude: newState.longitude,
@@ -239,7 +239,7 @@ export const togglePerspectiveUpdater = (
   // if toggling 3d and 2d while split and unsynced
   // copy the new pitch, bearing, and dragRotate values to each split viewport
   if (newState.splitMapViewports.length) {
-    newState.splitMapViewports = newState.splitMapViewports.map(currentViewport => ({
+    newState.splitMapViewports = newState.splitMapViewports.map((currentViewport: any) => ({
       ...currentViewport,
       pitch: newState.pitch,
       bearing: newState.bearing,
@@ -288,7 +288,7 @@ export const receiveMapConfigUpdater = (
     // note: deepmerge by default will merge arrays by concatenating them
     // but we need to overwrite destination arrays with source arrays, if present
     // https://github.com/TehShrike/deepmerge#arraymerge-example-overwrite-target-array
-    arrayMerge: (_destinationArray, sourceArray) => sourceArray
+    arrayMerge: (_destinationArray: any, sourceArray: any) => sourceArray
   });
 
   // if center map
@@ -361,10 +361,10 @@ export const toggleSplitMapViewportUpdater = (
       // only copy zoom viewport property from the most recently interacted-with viewport to the other
       // TODO: do we want to check for a match a different way, such as a combo of `latitude` and `longitude`?
       const lastUpdatedViewportIndex = newMapState.splitMapViewports.findIndex(
-        v => newMapState.zoom === v.zoom
+        (        v: { zoom: any; }) => newMapState.zoom === v.zoom
       );
 
-      const splitMapViewports = newMapState.splitMapViewports.map((currentViewport, i) => {
+      const splitMapViewports = newMapState.splitMapViewports.map((currentViewport: any, i: any) => {
         if (i === lastUpdatedViewportIndex) {
           // no zoom to modify here
           return currentViewport;
@@ -396,7 +396,7 @@ export const toggleSplitMapViewportUpdater = (
 };
 
 // Helpers
-export function getMapDimForSplitMap(isSplit, state) {
+export function getMapDimForSplitMap(isSplit: boolean, state: { isSplit: any; width: number; }) {
   // cases:
   // 1. state split: true - isSplit: true
   // do nothing
@@ -437,7 +437,7 @@ function updateViewportBasedOnBounds(state: MapState, newMapState: MapState) {
 
   // If maxBounds has changed reset the viewport to snap to bounds
   const hasMaxBoundsChanged =
-    !state.maxBounds || !state.maxBounds.every((val, idx) => val === newStateMaxBounds[idx]);
+    !state.maxBounds || !state.maxBounds.every((val: any, idx: string | number) => val === newStateMaxBounds[idx]);
   if (hasMaxBoundsChanged) {
     // Check if the newMapState viewport is within maxBounds
     if (!booleanWithin(viewportBoundsPolygon, maxBoundsPolygon)) {
@@ -492,7 +492,7 @@ export function pickViewportPropsFromMapState(state: MapState): Viewport {
 }
 
 /** Select items from object whose value is not undefined */
-const definedProps = obj =>
+const definedProps = (obj: { [s: string]: unknown; } | ArrayLike<unknown>) =>
   Object.entries(obj).reduce(
     (accu, [k, v]) => ({...accu, ...(v !== undefined ? {[k]: v} : {})}),
     {}
