@@ -32,6 +32,10 @@
 
 Kepler.gl is also a React component that uses [Redux](https://redux.js.org/) to manage its state and data flow. It can be embedded into other React-Redux applications and is highly customizable. For information on how to embed kepler.gl in your app take a look at this step-by-step [tutorial][vis-academy] on vis.academy.
 
+## Fork 
+
+This repo is forked from kepler.gl 3.0.0-alpha.1 (https://github.com/keplergl/kepler.gl/releases/tag/v3.0.0-alpha.1)
+
 ## Links
 
 - [Website][web]

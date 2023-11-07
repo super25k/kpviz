@@ -1,8 +1,9 @@
 {
-  "name": "kepler.gl",
+  "name": "kpviz",
   "author": "Shan He <shan@uber.com>",
-  "version": "3.0.0-alpha.1",
-  "description": "kepler.gl is a webgl based application to visualize large scale location data in the browser",
+  "contributor": "Mike Loose <mike.loose@bcaconsulting.ca>",
+  "version": "1.0.0",
+  "description": "fork of kepler.gl",
   "license": "MIT",
   "main": "dist/index.js",
   "types": "./types.d.ts",
@@ -35,7 +36,7 @@
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/keplergl/kepler.gl.git"
+    "url": "https://github.com/super25k/kpviz.git"
   },
   "scripts": {
     "bootstrap": "PUPPETEER_SKIP_CHROMIUM_DOWNLOAD=true yarn",
@@ -256,9 +257,8 @@
   "engines": {
     "node": ">=18"
   },
-  "maintainers": [
-    "Shan He <heshan0131@gmail.com>",
-    "Giuseppe Macri <gmacri@uber.com>"
+  "maintainer": [
+    "Mike Loose <mike.loose@bcaconsulting.ca>"
   ],
   "volta": {
     "node": "18.18.2",
